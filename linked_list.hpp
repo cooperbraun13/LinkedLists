@@ -1,6 +1,8 @@
 #ifndef LINKED_LIST_HPP
 #define LINKED_LIST_HPP
 
+#include<vector>
+
 class Node {
     public:
         Node();
@@ -23,7 +25,7 @@ class LinkedList {
         LinkedList(Node* start);
         LinkedList(LinkedList* lst);
         LinkedList(int* arr, int size);
-        LinkedList(std::vector<int>vec);
+        LinkedList(std::vector<int> vec);
         Node* get_head() const;
         int size() const; 
         bool is_empty() const;

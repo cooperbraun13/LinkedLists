@@ -129,7 +129,26 @@ bool test_remove() {
 	return true;
 }
 
-// additional tests go here
+bool test_remove_value() {
+	LinkedList lst;
+	lst.push_back(10);
+	lst.push_back(20);
+	lst.push_back(30);
+
+	bool return1 = lst.remove_value(20);
+	bool return2 = lst.remove_value(10);
+	bool return3 = lst.remove_value(30);
+	bool return4 = lst.remove_value(40);
+
+	assert(return1 == true);
+	assert(return2 == true);
+	assert(return3 == true);
+	assert(return4 == false);
+
+	return true;
+}
+
+
 
 int main() {
     test_push_back();
@@ -138,5 +157,5 @@ int main() {
     test_push_front();
     test_insert();
     test_remove();
-	// make sure to call the tests here
+	test_remove_value();
 }
