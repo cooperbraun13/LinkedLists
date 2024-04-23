@@ -105,7 +105,7 @@ bool LinkedList::remove(int index) {
 }
 
 bool LinkedList::remove_value(int value) {
-	if (head == nullptr) {
+	if (head == nullptr || size() == 0) {
 		return false;
 	}
 	Node* temp = head;
@@ -125,6 +125,29 @@ bool LinkedList::remove_value(int value) {
 	}
 	prev->next = temp->next;
 	delete temp;
+	return true;
+}
+
+int LinkedList::search(int value) const {
+	int index = 0;
+	Node* curr = head;
+	while (curr != nullptr) {
+		if (curr->value == value) {
+			return index;
+		}
+		curr = curr->next;
+		index++;
+	}
+	return -1;
+}
+
+void LinkedList::print() const {
+	Node* curr = head;
+	while (curr != nullptr) {
+		std::cout << curr->value << " -> ";
+		curr = curr->next;
+	}
+	std::cout << "null" << std::endl;
 }
 
 
