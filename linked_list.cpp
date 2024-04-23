@@ -104,5 +104,28 @@ bool LinkedList::remove(int index) {
 	return true;
 }
 
+bool LinkedList::remove_value(int value) {
+	if (head == nullptr) {
+		return false;
+	}
+	Node* temp = head;
+	Node* prev = nullptr;
+
+	if (temp != nullptr && temp->value == value) {
+		head = temp->next;
+		delete temp;
+		return true;
+	}
+	while (temp != nullptr && temp->value != value) {
+		prev = temp;
+		temp = temp->next;
+	}
+	if (temp == nullptr) {
+		return false;
+	}
+	prev->next = temp->next;
+	delete temp;
+}
+
 
 
