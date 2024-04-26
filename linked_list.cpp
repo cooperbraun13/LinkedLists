@@ -1,5 +1,6 @@
 #include "linked_list.hpp"
 #include <iostream>
+#include <vector>
 
 Node::Node() {
 	value = 0;
@@ -26,7 +27,7 @@ LinkedList::LinkedList() {
 }
 
 LinkedList::LinkedList(int value) {
-	head->value = value;
+	Node* new_node = 
 }
 
 LinkedList::LinkedList(Node* start) {
@@ -35,6 +36,14 @@ LinkedList::LinkedList(Node* start) {
 
 LinkedList::LinkedList(LinkedList* lst) {
 	
+}
+
+LinkedList::LinkedList(int* arr, int size) {
+
+}
+
+LinkedList::LinkedList(vector<int> vec) {
+
 }
 
 Node::~Node() { 
