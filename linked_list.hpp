@@ -5,10 +5,10 @@
 
 class Node {
     public:
-        /*Node();
+        Node();
         Node(int value);
         Node(int value, Node* next_ptr);
-        Node(Node* nde);*/
+        Node(Node* nde);
 
         int value;
         Node* next;
@@ -20,12 +20,12 @@ class LinkedList {
     private:
         Node* head = nullptr;
     public:
-        /*LinkedList();
+        LinkedList();
         LinkedList(int value);
         LinkedList(Node* start);
         LinkedList(LinkedList* lst);
         LinkedList(int* arr, int size);
-        LinkedList(std::vector<int> vec);*/
+        LinkedList(std::vector<int> vec);
         Node* get_head() const;
         int size() const; 
         bool is_empty() const;

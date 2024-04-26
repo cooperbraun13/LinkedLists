@@ -148,6 +148,14 @@ bool test_remove_value() {
 	return true;
 }
 
+bool test_search() {
+
+}
+
+bool test_print() {
+
+}
+
 
 
 int main() {
@@ -158,4 +166,6 @@ int main() {
     test_insert();
     test_remove();
 	test_remove_value();
+	test_search();
+	test_print();
 }

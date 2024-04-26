@@ -66,7 +66,7 @@ bool LinkedList::insert(int index, int value) {
 			return push_front(value);
 		}
 		Node* iter = head;
-		for (int counter = 0;counter < index-1;counter++){
+		for (int counter = 0; counter < index - 1; counter++){
 			iter = iter->next;
 		}
 		Node* new_node = new Node;
