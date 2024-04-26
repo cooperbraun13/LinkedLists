@@ -1,6 +1,42 @@
 #include "linked_list.hpp"
 #include <iostream>
 
+Node::Node() {
+	value = 0;
+	next = nullptr;
+}
+
+Node::Node(int value) {
+	this->value = value;
+	next = nullptr;
+}
+
+Node::Node(int value, Node* next_ptr) {
+	this->value = value;
+	next = next_ptr;
+}
+
+Node::Node(Node* nde) {
+	value = nde->value;
+	next = nde->next;
+}
+
+LinkedList::LinkedList() {
+	head = nullptr;
+}
+
+LinkedList::LinkedList(int value) {
+	head->value = value;
+}
+
+LinkedList::LinkedList(Node* start) {
+	start = head;
+}
+
+LinkedList::LinkedList(LinkedList* lst) {
+	
+}
+
 Node::~Node() { 
     if (next != nullptr) {
         delete next;
@@ -142,12 +178,16 @@ int LinkedList::search(int value) const {
 }
 
 void LinkedList::print() const {
-	Node* curr = head;
-	while (curr != nullptr) {
-		std::cout << curr->value << " -> ";
-		curr = curr->next;
+	if (head == nullptr) {
+		std::cout << "list is empty" << std::endl;
+		return;
 	}
-	std::cout << "null" << std::endl;
+	Node* temp = head;
+	while (temp != nullptr) {
+		std::cout << temp->value << " ";
+		temp = temp->next;
+	}
+	std::cout << std::endl;
 }
 
 
