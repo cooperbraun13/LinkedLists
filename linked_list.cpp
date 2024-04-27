@@ -17,6 +17,7 @@ Node::Node(int value, Node* next_ptr) {
 	next = next_ptr;
 }
 
+// copy constructor
 Node::Node(Node* nde) {
 	value = nde->value;
 	next = nde->next;
@@ -27,23 +28,35 @@ LinkedList::LinkedList() {
 }
 
 LinkedList::LinkedList(int value) {
-	Node* new_node = 
+	head = new Node(value);
 }
 
 LinkedList::LinkedList(Node* start) {
-	start = head;
+	head = start;
 }
 
+// copy constructor
 LinkedList::LinkedList(LinkedList* lst) {
-	
+	head = nullptr;
+	Node* curr = lst->head;
+	while (curr != nullptr) {
+		push_back(curr->value);
+		curr = curr->next;
+	}
 }
 
 LinkedList::LinkedList(int* arr, int size) {
-
+	head = nullptr;
+	for (int counter = 0; counter < size; counter++) {
+		push_back(arr[counter]);
+	}
 }
 
-LinkedList::LinkedList(vector<int> vec) {
-
+LinkedList::LinkedList(std::vector<int> vec) {
+	head = nullptr;
+	for (int value : vec) {
+		push_back(value);
+	}
 }
 
 Node::~Node() { 
@@ -150,17 +163,12 @@ bool LinkedList::remove(int index) {
 }
 
 bool LinkedList::remove_value(int value) {
-	if (head == nullptr || size() == 0) {
+	if (is_empty()) {
 		return false;
 	}
 	Node* temp = head;
 	Node* prev = nullptr;
 
-	if (temp != nullptr && temp->value == value) {
-		head = temp->next;
-		delete temp;
-		return true;
-	}
 	while (temp != nullptr && temp->value != value) {
 		prev = temp;
 		temp = temp->next;
@@ -168,35 +176,44 @@ bool LinkedList::remove_value(int value) {
 	if (temp == nullptr) {
 		return false;
 	}
-	prev->next = temp->next;
+	if (prev == nullptr) {
+		head = temp->next;
+	} else {
+		prev->next = temp->next;
+	}
 	delete temp;
 	return true;
 }
 
 int LinkedList::search(int value) const {
-	int index = 0;
+	if (is_empty()) {
+		return -1;
+	}
 	Node* curr = head;
-	while (curr != nullptr) {
-		if (curr->value == value) {
-			return index;
-		}
+	int index = 0;
+
+	while (curr != nullptr && curr->value != value) {
 		curr = curr->next;
 		index++;
 	}
-	return -1;
+	if (curr != nullptr) {
+		return index;
+	} else {
+		return -1;
+	}
 }
 
 void LinkedList::print() const {
-	if (head == nullptr) {
+	if (is_empty()) {
 		std::cout << "list is empty" << std::endl;
-		return;
+	} else {
+		Node* curr = head;
+		while (curr != nullptr) {
+			std::cout << curr->value << " ";
+			curr = curr->next;
+		}
+		std::cout << std::endl;
 	}
-	Node* temp = head;
-	while (temp != nullptr) {
-		std::cout << temp->value << " ";
-		temp = temp->next;
-	}
-	std::cout << std::endl;
 }
 
 

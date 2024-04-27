@@ -196,19 +196,62 @@ bool test_print() {
 }
 
 bool test_Node_default_constructor() {
+	// no setup needed
+	// execution
+	Node* n = new Node();
 
+	// validation
+	assert(n->value == 0);
+	assert(n->next == nullptr);
+
+	// cleanup
+	return true;
 }
 
 bool test_Node_constructor_with_value() {
+	// setup
+	int value = 5;
 
+	// execution
+	Node* n = new Node(value);
+
+	// validation
+	assert(n->value == value);
+	assert(n->next == nullptr);
+
+	// cleanup
+	return true;
 }
 
 bool test_Node_constructor_with_value_next() {
+	// setup
+	Node* next_node = new Node(10);
+	int value = 5;
 
+	// execution
+	Node* n = new Node(value, next_node);
+
+	// validation
+	assert(n->value == value);
+	assert(n->next == next_node);
+
+	// cleanup
+	return true;
 }
 
 bool test_Node_copy_constructor() {
+	// setup
+	Node* og = new Node(5);
 
+	// execution
+	Node* copy = new Node(og);
+
+	// validation
+	assert(copy->value == og->value);
+	assert(copy->next == og->next);
+
+	// cleanup
+	return true;
 }
 
 bool test_LinkedList_default_constructor() {
@@ -241,19 +284,74 @@ bool test_LinkedList_constructor_with_value() {
 }
 
 bool test_LinkedList_constructor_with_node_pointer() {
+	// setup
+	Node* node = new Node(10);
 
+	// execution
+	LinkedList lst(node);
+
+	// validation
+	assert(lst.size() == 1);
+	assert(lst.get_head() != nullptr);
+	assert(lst.get_head()->value == 10);
+
+	// cleanup
+	return true;
 }
 
 bool test_LinkedList_copy_constructor() {
+	// setup
+	LinkedList og;
+	og.push_back(5);
+	og.push_back(10);
 
+	// execution
+	LinkedList copy(&og);
+
+	// validation
+	assert(copy.size() == og.size());
+	assert(copy.get_head() != nullptr);
+	assert(copy.get_head()->value = 5);
+	assert(copy.get_head()->next->value = 10);
+
+	// cleanup
+	return true;
 }
 
 bool test_LinkedList_constructor_from_array() {
+	// setup
+	int arr[] = {1, 2, 3};
 
+	// execution
+	LinkedList lst(arr, 3);
+
+	// validation
+	assert(lst.size() == 3);
+	assert(lst.get_head() != nullptr);
+	assert(lst.get_head()->value = 1);
+	assert(lst.get_head()->next->value = 2);
+	assert(lst.get_head()->next->next->value = 1);
+
+	// cleanup
+	return true;
 }
 
 bool test_LinkedList_constructor_from_vector() {
+	// setup
+	std::vector<int> vec = {4, 5, 6};
 
+	// execution
+	LinkedList lst(vec);
+
+	// validation
+	assert(lst.size() == 3);
+	assert(lst.get_head() != nullptr);
+	assert(lst.get_head()->value = 4);
+	assert(lst.get_head()->next->value = 5);
+	assert(lst.get_head()->next->next->value = 6);
+
+	// cleanup
+	return true;
 }
 
 int main() {
