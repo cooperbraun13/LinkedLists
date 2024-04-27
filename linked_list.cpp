@@ -60,16 +60,18 @@ LinkedList::LinkedList(std::vector<int> vec) {
 }
 
 Node::~Node() { 
-    if (next != nullptr) {
+    /*if (next != nullptr) {
         delete next;
         next = nullptr;
-    }
+    }*/
 }
 
 LinkedList::~LinkedList() {
-    if (head != nullptr) {
-        delete head;
-        head = nullptr;
+    while (head != nullptr) {
+		Node* temp = head;
+		head = head->next;
+		temp->next = nullptr;
+        delete temp;
     }
 }
 
